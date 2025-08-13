@@ -1,29 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/styles.css" />
-    <script defer src="js/script.js"></script>
-    <title>Dbl click measure</title>
-  </head>
-  <body>
+    <meta name="description"
+        content="test your double click speed for left, middle, and right mouse buttons with instant feedback. no cookies.">
+    <meta name="author" content="oleoleoleoleo">
+    <meta property="og:title" content="double clickometer">
+    <meta property="og:description"
+        content="test your double click speed for left, middle, and right mouse buttons with instant feedback. no cookies.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oleoleoleoleo.github.io/double-clickometer">
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <script defer src="./js/script.js?v=0.1"></script>
+    <title>double clickometer</title>
+</head>
+
+<body>
+    <header class="page-header">
+        <h1 class="page-title fat">double clickometer</h1>
+        <div class="page-sub-header">
+            <div class="description">
+                <p>
+                    double click in the boxes to get a (semi-)accurate measurement of
+                    how long it takes for the second click to register after the first
+                    one.
+                </p>
+                <p>
+                    after a set amount of milliseconds have elapsed and no second click
+                    has happened, the first click will be reset. You can adjust this
+                    delay in the box over here ➡️
+                </p>
+            </div>
+            <div class="delay-setter">
+                <form id="delay-form">
+                    <label for="delay-input">Reset first click after:</label>
+                    <input type="number" id="delay-input" value="1000">
+                    <p class="input-suffix">ms</p></input>
+                    <button type="submit" class="apply-button">Apply</button>
+                </form>
+            </div>
+        </div>
+    </header>
     <div class="main-container">
-      <div class="left-click-container click-container">
-        <div class="click-box"></div>
-        <p class="title">Timings:</p>
-        <div class="info-container"></div>
-      </div>
-      <div class="middle-click-container click-container">
-        <div class="click-box"></div>
-        <p class="title">Timings:</p>
-        <div class="info-container"></div>
-      </div>
-      <div class="right-click-container click-container">
-        <div class="click-box"></div>
-        <p class="title">Timings:</p>
-        <div class="info-container"></div>
-      </div>
+        <div class="left-click-container click-container">
+            <div class="click-box fat">
+                <img class="mouse-icon" src="assets/left-click.svg" />
+            </div>
+            <p class="title">timings:</p>
+            <div class="info-box"></div>
+        </div>
+        <div class="middle-click-container click-container">
+            <div class="click-box fat">
+                <img class="mouse-icon" src="assets/middle-click.svg" />
+            </div>
+            <p class="title">timings:</p>
+            <div class="info-box"></div>
+        </div>
+        <div class="right-click-container click-container">
+            <div class="click-box fat">
+                <img class="mouse-icon" src="assets/right-click.svg" />
+            </div>
+            <p class="title">timings:</p>
+            <div class="info-box"></div>
+        </div>
     </div>
-  </body>
+    <footer class="footer">
+        <p>double click speed tester ፠ v0.1 ፠ no cookies</p>
+        <span>
+            <a href="https://github.com/oleoleoleoleo/double-clickometer" target="_blank">source</a> ·
+            <a href="https://github.com/oleoleoleoleo/double-clickometer/issues" target="_blank">feedback</a>
+        </span>
+    </footer>
+</body>
+
 </html>

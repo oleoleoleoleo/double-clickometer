@@ -1,7 +1,14 @@
     body,
-    html {
+    html,
+    a {
         padding: 0;
         margin: 0;
+        background-color: rgba(25, 25, 25, 0.5);
+        width: 100vw;
+        height: 100vh;
+        color: white;
+        text-align: center;
+        font-family: Verdana, Geneva, sans-serif;
 
         * {
             box-sizing: border-box;
@@ -18,14 +25,67 @@
         }
     }
 
+    .page-header {
+        padding: 30px 60px;
+        margin: auto;
+        max-width: 60%;
+
+        .page-title {
+            text-align: center;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .page-sub-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 25px;
+
+            align-items: flex-end;
+
+            .description {
+                width: 65%;
+                text-align: right;
+            }
+
+            .delay-setter {
+                position: relative;
+                margin-bottom: 16px;
+                width: 35%;
+                text-align: left;
+
+                .input-suffix {
+                    position: absolute;
+                    top: 3px;
+                    left: 135px;
+                    color: black;
+                }
+
+                .apply-button {
+                    background-color: rgba(50, 50, 50, 0.5);
+                    border: 1px solid white;
+                    color: white;
+                    padding: 3px 6px;
+                    cursor: pointer;
+
+                    &:active {
+                        transform: scale(0.90) translateY(2px);
+                        box-shadow: 0 2px 0 red;
+                    }
+                }
+
+            }
+        }
+    }
+
     .main-container {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-        width: 100vw;
-        height: 100vh;
         padding: 35px;
-        background-color: rgba(25, 25, 25, 0.5);
+        margin: auto;
+        max-width: 1300px;
         gap: 50px;
         align-items: center;
 
@@ -34,38 +94,67 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            height: 60vh;
+            height: 50vh;
             width: 25%;
             padding: 25px;
             background-color: rgba(50, 50, 50, 0.5);
 
-            .title {
-                color: white;
-            }
-
             .click-box {
+                position: relative;
                 width: 100px;
                 height: 100px;
                 background-color: white;
+                user-select: none;
+
+                .mouse-icon {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    padding: 0;
+                    margin: 0;
+                    width: 100%;
+                    height: 100%;
+                    transform: scale(1.2);
+                }
 
                 &::before {
                     color: black;
                     margin: auto;
                     content: 'CLICK HERE';
+                    font-size: 30px;
+                    text-align: center;
+                    font-weight: 700;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    -webkit-text-stroke: 1px white;
+                    z-index: 20;
+                    opacity: 0.3;
                 }
             }
 
-            .info-container {
+            .info-box {
                 background-color: white;
                 width: 80%;
                 height: 70%;
                 overflow-y: auto;
 
                 .info-item {
+                    text-align: left;
                     animation: popIn 0.5s ease-out forwards;
-                    padding: 5px;
+                    padding: 5px 8px;
                     margin: 0;
+                    color: black;
                 }
             }
         }
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.8rem;
     }

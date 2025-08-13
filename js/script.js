@@ -1,41 +1,30 @@
 const leftContainer = document.querySelector('.left-click-container');
-const leftClickContainer = leftContainer.querySelector('.click-box');
-const leftClickInfoContainer = leftContainer.querySelector('.info-container');
+const middleContainer = document.querySelector('.middle-click-container');
+const rightContainer = document.querySelector('.right-click-container');
+
+const delayInput = document.querySelector('#delay-input');
+const delayForm = document.querySelector('#delay-form');
 
 const leftClick = {
   eventName: 'click',
-  clickBox: leftClickContainer,
-  infoBox: leftClickInfoContainer,
+  containerEl: leftContainer,
   firstClickTime: null,
   timeoutRef: null,
 };
-
-const middleContainer = document.querySelector('.middle-click-container');
-const middleClickContainer = middleContainer.querySelector('.click-box');
-const middleClickInfoContainer =
-  middleContainer.querySelector('.info-container');
 
 const middleClick = {
   eventName: 'auxclick',
-  clickBox: middleClickContainer,
-  infoBox: middleClickInfoContainer,
+  containerEl: middleContainer,
   firstClickTime: null,
   timeoutRef: null,
 };
-
-const rightContainer = document.querySelector('.right-click-container');
-const rightClickContainer = rightContainer.querySelector('.click-box');
-const rightClickInfoContainer = rightContainer.querySelector('.info-container');
 
 const rightClick = {
   eventName: 'contextmenu',
-  clickBox: rightClickContainer,
-  infoBox: rightClickInfoContainer,
+  containerEl: rightContainer,
   firstClickTime: null,
   timeoutRef: null,
 };
-
-const containersIndex = [leftClick, middleClick, rightClick];
 
 const createTextEl = (content) => {
   const p = document.createElement('p');
@@ -44,24 +33,42 @@ const createTextEl = (content) => {
   return p;
 };
 
-containersIndex.forEach((container) => {
-  let { clickBox, infoBox, firstClickTime, eventName, timeoutRef } = container;
-  clickBox.addEventListener(eventName, (e) => {
-    e.preventDefault();
+const addClickListeners = (delay) => {
+  [leftClick, middleClick, rightClick].forEach((container) => {
+    let { containerEl, firstClickTime, eventName, timeoutRef } = container;
+    const infoBox = containerEl.querySelector('.info-box');
 
-    if (!firstClickTime) {
-      firstClickTime = performance.now();
-      timeoutRef = setTimeout(() => {
-        if (firstClickTime) {
-          firstClickTime = null;
-        }
-      }, 1000);
-      return;
-    }
-    infoBox.prepend(
-      createTextEl(`፠ ${(performance.now() - firstClickTime).toFixed(2)} ms`)
-    );
-    firstClickTime = null;
-    clearTimeout(timeoutRef);
+    const previousClickBox = containerEl.querySelector('.click-box');
+    const clonedClickBox = previousClickBox.cloneNode(true);
+
+    // replace to get rid of previous event listeners
+    containerEl.replaceChild(clonedClickBox, previousClickBox);
+
+    clonedClickBox.addEventListener(eventName, (e) => {
+      e.preventDefault();
+
+      if (!firstClickTime) {
+        firstClickTime = performance.now();
+        timeoutRef = setTimeout(() => {
+          if (firstClickTime) {
+            firstClickTime = null;
+          }
+        }, delay);
+        return;
+      }
+
+      infoBox.prepend(
+        createTextEl(`፠ ${(performance.now() - firstClickTime).toFixed(2)} ms`)
+      );
+      firstClickTime = null;
+      clearTimeout(timeoutRef);
+    });
   });
+};
+
+delayForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  addClickListeners(delayInput.value);
 });
+
+addClickListeners(delayInput.value);
