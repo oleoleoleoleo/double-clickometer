@@ -37,6 +37,7 @@ const addClickListeners = (delay) => {
   [leftClick, middleClick, rightClick].forEach((container) => {
     let { containerEl, firstClickTime, eventName, timeoutRef } = container;
     const infoBox = containerEl.querySelector('.info-box');
+    const liveIcon = containerEl.querySelector('.live-icon');
 
     const previousClickBox = containerEl.querySelector('.click-box');
     const clonedClickBox = previousClickBox.cloneNode(true);
@@ -49,9 +50,11 @@ const addClickListeners = (delay) => {
 
       if (!firstClickTime) {
         firstClickTime = performance.now();
+        liveIcon.classList.add('visible');
         timeoutRef = setTimeout(() => {
           if (firstClickTime) {
             firstClickTime = null;
+            liveIcon.classList.remove('visible');
           }
         }, delay);
         return;
@@ -61,6 +64,7 @@ const addClickListeners = (delay) => {
         createTextEl(`፠ ${(performance.now() - firstClickTime).toFixed(2)} ms`)
       );
       firstClickTime = null;
+      liveIcon.classList.remove('visible');
       clearTimeout(timeoutRef);
     });
   });

@@ -1,9 +1,8 @@
     body,
-    html,
     a {
         padding: 0;
         margin: 0;
-        background-color: rgba(25, 25, 25, 0.5);
+        background-color: rgba(25, 25, 25, 0.75);
         width: 100vw;
         height: 100vh;
         color: white;
@@ -26,22 +25,18 @@
     }
 
     .page-header {
-        padding: 30px 60px;
         margin: auto;
-        max-width: 60%;
+        max-width: 50%;
 
         .page-title {
             text-align: center;
             font-weight: bold;
-            margin: 0;
         }
 
         .page-sub-header {
             display: flex;
             flex-direction: row;
-            justify-content: center;
             gap: 25px;
-
             align-items: flex-end;
 
             .description {
@@ -82,7 +77,6 @@
     .main-container {
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
         padding: 35px;
         margin: auto;
         max-width: 1300px;
@@ -93,11 +87,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
             height: 50vh;
             width: 25%;
             padding: 25px;
             background-color: rgba(50, 50, 50, 0.5);
+
+            .live-icon {
+                visibility: hidden;
+
+                &.visible {
+                    visibility: visible;
+                }
+            }
 
             .click-box {
                 position: relative;
@@ -117,7 +118,7 @@
                     transform: scale(1.2);
                 }
 
-                &::before {
+                &::after {
                     color: black;
                     margin: auto;
                     content: 'CLICK HERE';
@@ -129,7 +130,6 @@
                     left: 50%;
                     transform: translate(-50%, -50%);
                     -webkit-text-stroke: 1px white;
-                    z-index: 20;
                     opacity: 0.3;
                 }
             }
