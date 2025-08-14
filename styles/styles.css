@@ -118,7 +118,7 @@
                     transform: scale(1.2);
                 }
 
-                &::after {
+                &::before {
                     color: black;
                     margin: auto;
                     content: 'CLICK HERE';
@@ -130,6 +130,7 @@
                     left: 50%;
                     transform: translate(-50%, -50%);
                     -webkit-text-stroke: 1px white;
+                    z-index: 20;
                     opacity: 0.3;
                 }
             }

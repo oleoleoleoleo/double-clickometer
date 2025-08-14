@@ -34,7 +34,7 @@ const createTextEl = (content) => {
 };
 
 const addClickListeners = (delay) => {
-  [leftClick, middleClick, rightClick].forEach((container) => {
+  [leftClick, middleClick, rightClick].forEach((container, index) => {
     let { containerEl, firstClickTime, eventName, timeoutRef } = container;
     const infoBox = containerEl.querySelector('.info-box');
     const liveIcon = containerEl.querySelector('.live-icon');
@@ -47,6 +47,14 @@ const addClickListeners = (delay) => {
 
     clonedClickBox.addEventListener(eventName, (e) => {
       e.preventDefault();
+    });
+
+    clonedClickBox.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+
+      if (e.button !== index) {
+        return;
+      }
 
       if (!firstClickTime) {
         firstClickTime = performance.now();
