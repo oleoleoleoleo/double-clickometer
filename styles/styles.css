@@ -31,6 +31,8 @@
         .page-title {
             text-align: center;
             font-weight: bold;
+            margin: 0;
+            padding-top: 20px;
         }
 
         .page-sub-header {
@@ -77,6 +79,7 @@
     .main-container {
         display: flex;
         flex-direction: row;
+        justify-content: space-evenly;
         padding: 35px;
         margin: auto;
         max-width: 1300px;
